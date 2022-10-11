@@ -7,6 +7,7 @@ import time
 import string
 import requests
 import nltk
+from nltk.downloader import download, download_shell 
 from bs4 import BeautifulSoup
 from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem
