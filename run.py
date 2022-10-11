@@ -21,6 +21,14 @@ from scipy import spatial
 from sklearn.preprocessing import normalize
 from string import digits
 
+# # Resume
+# response = requests.post('https://hh.ru/oauth/token', data={'client_secret':'SEJEQ0GVK6I7PLJCHC7VIFFIMIDLPM1KECK4UP315NU3I7MLKFCVK84SQEDLGEC0', 'client_id': 'RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70', 'grant_type':'authorization_code', 'code': 'M1BLBHMAVCF1TMNE3V9J2QSUKVU9D3PK9G2NF4V9H57SB3ISODCCL5DL8GN18UV5'})
+# print(response.text)
+
+# # Vacancies
+# response = requests.post('https://hh.ru/oauth/token', data={'client_secret':'SEJEQ0GVK6I7PLJCHC7VIFFIMIDLPM1KECK4UP315NU3I7MLKFCVK84SQEDLGEC0', 'client_id': 'RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70', 'grant_type':'client_credentials'})
+# print(response.text)
+
 with open("/Users/hipsta/Desktop/MyDevelop/LaMa-Assistant/server/dict.json", "r",  encoding="utf-8") as f:
         dictionary = json.load(f)
 
@@ -28,8 +36,8 @@ with open("/Users/hipsta/Desktop/MyDevelop/LaMa-Assistant/server/dict.json", "r"
 stop_words = stopwords.words('russian')
 stemmer = SnowballStemmer(language='russian')
 punct = string.punctuation.replace("#", "") + '—' + '”' + '“' + '``' + '«' + '»' + '•' + '/' + ' '
-headersForVacancy = {'Authorization': 'Bearer T1F9V1I1930VBO5CLT77CVS57SHKKE47J1MVFQ8ATS84DQ16SM9D8SC28CKJFI2U'}
-headersForResume = {'Authorization': 'Bearer RLBEKM511TJ60HI9NV7J3JNLPNCA9353T4SBUNIM3QSODOTK8KPUQUFTA404I3TS'}
+headersForVacancy = {'Authorization': 'Bearer NVC4RAMT2L5PI6DU6M5R0FCCE67HVFRG18MGCP96EU58JMLOH0T7VI65ADPOEDLR'}
+headersForResume = {'Authorization': 'Bearer JCGD8N8C5VT1FE17D1EH6O9H96F1BQ3LUP2H6K9NPEDRVD27B42H0C2LRQP164MC'}
 
 SOFTWARE_NAMES = [SoftwareName.CHROME.value]
 OPERATING_SYSTEMS = [OperatingSystem.WINDOWS.value, OperatingSystem.LINUX.value]
@@ -277,7 +285,7 @@ def getItems(resumeId):
         (vacancies, vacanciesPreview) = getVacancies(resume)
 
         r = jsonify({'items': sorted(vacanciesPreview, key=lambda k: k['rate'], reverse=True) , 'resume': resume})
-  
+        print(resume)
         return jsonify({'items': sorted(vacanciesPreview, key=lambda k: k['rate'], reverse=True) , 'resume': resume})
 
     else:
@@ -322,9 +330,9 @@ def getItemsAfterEdit():
 # {"access_token": "T1F9V1I1930VBO5CLT77CVS57SHKKE47J1MVFQ8ATS84DQ16SM9D8SC28CKJFI2U", "token_type": "bearer"}
 
 # Получение токена резюме - перейти по адресу https://hh.ru/oauth/authorize?response_type=code&client_id=RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70
-# Получаем в url code=R3UUBAP70D00CJC7MTCRH7QF5M2QG66GFTK5U353IATKI9BIBJ653KHU8UEH4KHB
+# Получаем в url code=M1BLBHMAVCF1TMNE3V9J2QSUKVU9D3PK9G2NF4V9H57SB3ISODCCL5DL8GN18UV5
 # import requests
-# response = requests.post('https://hh.ru/oauth/token', data={'client_secret':'SEJEQ0GVK6I7PLJCHC7VIFFIMIDLPM1KECK4UP315NU3I7MLKFCVK84SQEDLGEC0', 'client_id': 'RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70', 'grant_type':'authorization_code', 'code': 'R3UUBAP70D00CJC7MTCRH7QF5M2QG66GFTK5U353IATKI9BIBJ653KHU8UEH4KHB'})
+# response = requests.post('https://hh.ru/oauth/token', data={'client_secret':'SEJEQ0GVK6I7PLJCHC7VIFFIMIDLPM1KECK4UP315NU3I7MLKFCVK84SQEDLGEC0', 'client_id': 'RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70', 'grant_type':'authorization_code', 'code': 'M1BLBHMAVCF1TMNE3V9J2QSUKVU9D3PK9G2NF4V9H57SB3ISODCCL5DL8GN18UV5'})
 # print(response.text)
 
 # {"access_token": "RLBEKM511TJ60HI9NV7J3JNLPNCA9353T4SBUNIM3QSODOTK8KPUQUFTA404I3TS", "token_type": "bearer", "refresh_token": "N088A5JHPEB1O596RHVBMUIH0GGRTP4B00GGA2LSB7HOLPBR9I35CF3APM0U5Q87", "expires_in": 1209599}
