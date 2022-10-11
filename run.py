@@ -7,7 +7,7 @@ import time
 import string
 import requests
 import nltk
-from nltk.downloader import download, download_shell 
+from nltk import download
 from bs4 import BeautifulSoup
 from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem
@@ -34,7 +34,7 @@ from string import digits
 with open("/Users/hipsta/Desktop/MyDevelop/LaMa-Assistant/server/dict.json", "r",  encoding="utf-8") as f:
         dictionary = json.load(f)
 
-nltk.download(stopwords)
+download(stopwords)
 
 
 stop_words = stopwords.words('russian')
