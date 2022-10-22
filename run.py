@@ -19,8 +19,9 @@ from scipy import spatial
 from sklearn.preprocessing import normalize
 from string import digits
 
+# Получение токена резюме - перейти по адресу https://hh.ru/oauth/authorize?response_type=code&client_id=RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70
 # # Resume
-# response = requests.post('https://hh.ru/oauth/token', data={'client_secret':'SEJEQ0GVK6I7PLJCHC7VIFFIMIDLPM1KECK4UP315NU3I7MLKFCVK84SQEDLGEC0', 'client_id': 'RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70', 'grant_type':'authorization_code', 'code': 'M1BLBHMAVCF1TMNE3V9J2QSUKVU9D3PK9G2NF4V9H57SB3ISODCCL5DL8GN18UV5'})
+# response = requests.post('https://hh.ru/oauth/token', data={'client_secret':'SEJEQ0GVK6I7PLJCHC7VIFFIMIDLPM1KECK4UP315NU3I7MLKFCVK84SQEDLGEC0', 'client_id': 'RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70', 'grant_type':'authorization_code', 'code': 'UHVU14H9E26V5AL5256EN8CDMJ94SLEUR7LFGNB8HJ135E5RTB50V0PEUSBPUH58'})
 # print(response.text)
 
 # # Vacancies
@@ -34,8 +35,8 @@ with open("/Users/hipsta/Desktop/MyDevelop/LaMa-Assistant/server/dict.json", "r"
 stop_words = stopwords.words('russian')
 stemmer = SnowballStemmer(language='russian')
 punct = string.punctuation.replace("#", "") + '—' + '”' + '“' + '``' + '«' + '»' + '•' + '/' + ' '
-headersForVacancy = {'Authorization': 'Bearer NVC4RAMT2L5PI6DU6M5R0FCCE67HVFRG18MGCP96EU58JMLOH0T7VI65ADPOEDLR'}
-headersForResume = {'Authorization': 'Bearer JCGD8N8C5VT1FE17D1EH6O9H96F1BQ3LUP2H6K9NPEDRVD27B42H0C2LRQP164MC'}
+headersForVacancy = {'Authorization': 'Bearer UU127MI5EQ2PCQ9KKLEC2IIFSU3SFO7146N85GSLFPPCV6HVAEOLAALHKNDB2CVA'}
+headersForResume = {'Authorization': 'Bearer SGG2O7HCRGDA4M8NKF3GI8FFL20G6IE2KOOVLCVPIBRCUQQGFO43AVP3R0UHNS86'}
 
 SOFTWARE_NAMES = [SoftwareName.CHROME.value]
 OPERATING_SYSTEMS = [OperatingSystem.WINDOWS.value, OperatingSystem.LINUX.value]
@@ -208,7 +209,6 @@ def getExperience(resume):
 
 def getResume(id):
     resumeResponse = requests.get('https://api.hh.ru/resumes/' + id, headers=headersForResume)
-
     if resumeResponse.status_code == 200:
         return resumeResponse.json()
     else:
@@ -271,7 +271,7 @@ def getAreasAndRoles():
 @app.route('/items/<string:resumeId>', methods=['GET'])  
 def getItems(resumeId):
     t = time.time()
-    resume = getResume(resumeId)        
+    resume = getResume(resumeId)   
     if resume:
         if not resume['salary']:
             resume['salary'] = {'amount': '', 'currency' : 'RUR'}
@@ -283,7 +283,6 @@ def getItems(resumeId):
         (vacancies, vacanciesPreview) = getVacancies(resume)
 
         r = jsonify({'items': sorted(vacanciesPreview, key=lambda k: k['rate'], reverse=True) , 'resume': resume})
-        print(resume)
         return jsonify({'items': sorted(vacanciesPreview, key=lambda k: k['rate'], reverse=True) , 'resume': resume})
 
     else:
