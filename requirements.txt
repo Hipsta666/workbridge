@@ -2,6 +2,5 @@ flask==1.0.2
 flask_cors==3.0.4
 requests==2.23.0
 sklearn==0.0
-scipy==1.4.1
 nltk==3.3
 random_user_agent==1.0.1
