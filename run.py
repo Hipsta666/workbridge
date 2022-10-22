@@ -1,12 +1,9 @@
-from base64 import decode
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
 import requests
 import time
 import string
-import requests
-from bs4 import BeautifulSoup
 from random_user_agent.user_agent import UserAgent
 from random_user_agent.params import SoftwareName, OperatingSystem
 from threading import *
@@ -16,7 +13,6 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 from scipy import spatial
-from sklearn.preprocessing import normalize
 from string import digits
 
 # Получение токена резюме - перейти по адресу https://hh.ru/oauth/authorize?response_type=code&client_id=RDT0RFJHJ50AEQQP8MJ49JB8KE0S9S58NVDMB3JHGG1815445RATC9RDL44K2E70
