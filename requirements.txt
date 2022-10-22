@@ -26,9 +26,6 @@ click
 clickhouse-driver
 cloudpickle
 colorama
-conda
-conda-build
-conda-verify
 constantly
 contextlib2
 cryptography
