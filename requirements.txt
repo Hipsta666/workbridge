@@ -116,7 +116,6 @@ mpmath
 msgpack
 msgpack-python
 multipledispatch
-navigator-updater
 nbconvert
 nbformat
 networkx
